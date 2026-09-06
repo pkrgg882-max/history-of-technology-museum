@@ -1,0 +1,3350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The History of Technology Museum</title>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #0b0c0f;
+    color: #eeeeee;
+    line-height: 1.6;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+:root {
+    --gold: #d7b56d;
+    --gold-light: #f1d38c;
+    --dark: #0b0c0f;
+    --dark2: #14161a;
+    --dark3: #1d2025;
+    --text: #eeeeee;
+    --muted: #a8a8a8;
+    --border: rgba(215,181,109,.35);
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b0c0f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #69552f;
+    border-radius: 10px;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: rgba(8,9,11,.93);
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid rgba(215,181,109,.25);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--gold);
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo-icon {
+    font-size: 30px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 27px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 15px;
+
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 50% 35%,
+            rgba(215,181,109,.20),
+            transparent 28%),
+        radial-gradient(circle at 20% 80%,
+            rgba(70,80,100,.20),
+            transparent 30%),
+        linear-gradient(180deg,#17130d,#08090b 75%);
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    opacity: .35;
+}
+
+.hero-content {
+    position: relative;
+    max-width: 1000px;
+    padding: 120px 25px 80px;
+}
+
+.museum-label {
+    color: var(--gold);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 8vw, 105px);
+    line-height: .95;
+
+    color: #f5f1e8;
+
+    text-shadow:
+        0 10px 50px rgba(0,0,0,.8);
+
+    margin-bottom: 30px;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero-description {
+    max-width: 720px;
+    margin: auto;
+
+    color: #c8c8c8;
+    font-size: 20px;
+}
+
+.hero-buttons {
+    margin-top: 40px;
+
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: none;
+    padding: 14px 27px;
+
+    border-radius: 30px;
+
+    font-weight: bold;
+    font-size: 15px;
+
+    transition: .3s;
+}
+
+.btn-gold {
+    background: var(--gold);
+    color: #111;
+}
+
+.btn-gold:hover {
+    background: var(--gold-light);
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+
+.btn-outline:hover {
+    background: var(--gold);
+    color: #111;
+}
+
+.scroll-indicator {
+    margin-top: 80px;
+    color: #777;
+    font-size: 13px;
+}
+
+.scroll-arrow {
+    display: block;
+    font-size: 25px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+section {
+    padding: 110px 7%;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 60px;
+}
+
+.eyebrow {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    font-size: clamp(35px,5vw,55px);
+    margin-bottom: 18px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 18px;
+}
+
+/* =========================================================
+   MUSEUM INTRO
+========================================================= */
+
+.introduction {
+    background:
+        linear-gradient(
+            135deg,
+            #15120d,
+            #0d0f12
+        );
+}
+
+.intro-grid {
+    max-width: 1150px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.intro-text h3 {
+    font-size: 34px;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.intro-text p {
+    color: #bbb;
+    margin-bottom: 18px;
+    font-size: 17px;
+}
+
+.quote {
+    margin-top: 30px;
+    padding: 22px 25px;
+
+    border-left: 3px solid var(--gold);
+
+    background: rgba(255,255,255,.025);
+
+    color: #ddd;
+    font-style: italic;
+}
+
+.intro-art {
+    min-height: 360px;
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle,
+            rgba(215,181,109,.22),
+            transparent 35%),
+        #111318;
+}
+
+.intro-art .big-icon {
+    font-size: 160px;
+    filter: drop-shadow(0 20px 35px #000);
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+    padding-top: 30px;
+    padding-bottom: 90px;
+    background: #0d0f12;
+}
+
+.stats-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.stat {
+    text-align: center;
+
+    padding: 30px 15px;
+
+    border: 1px solid #292c31;
+    border-radius: 15px;
+
+    background: #131519;
+}
+
+.stat-number {
+    font-size: 38px;
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.stat-label {
+    color: #888;
+    font-size: 14px;
+}
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+.timeline-section {
+    background:
+        radial-gradient(circle at 50% 30%,
+            rgba(215,181,109,.07),
+            transparent 35%),
+        #0b0c0f;
+}
+
+.timeline-controls {
+    max-width: 1000px;
+    margin: 0 auto 50px;
+
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 9px 17px;
+
+    border: 1px solid #363940;
+    border-radius: 20px;
+
+    background: #16181d;
+    color: #aaa;
+
+    transition: .25s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--gold);
+    color: #111;
+    border-color: var(--gold);
+}
+
+.timeline {
+    position: relative;
+    max-width: 1150px;
+    margin: auto;
+}
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+    bottom: 0;
+
+    width: 3px;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--gold) 5%,
+            var(--gold) 95%,
+            transparent
+        );
+}
+
+.timeline-item {
+    width: 50%;
+    padding: 20px 50px;
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-dot {
+    position: absolute;
+
+    top: 35px;
+
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    box-shadow:
+        0 0 0 6px rgba(215,181,109,.10),
+        0 0 25px rgba(215,181,109,.4);
+
+    z-index: 5;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -9px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -9px;
+}
+
+.timeline-card {
+    background:
+        linear-gradient(
+            145deg,
+            #1b1e23,
+            #121417
+        );
+
+    border: 1px solid #30343a;
+    border-radius: 18px;
+
+    padding: 30px;
+
+    transition: .35s;
+
+    cursor: pointer;
+}
+
+.timeline-card:hover {
+    transform: translateY(-5px);
+
+    border-color: var(--gold);
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.35);
+}
+
+.timeline-year {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.timeline-card h3 {
+    font-size: 27px;
+    margin: 8px 0 10px;
+}
+
+.timeline-card p {
+    color: #999;
+    font-size: 15px;
+}
+
+/* =========================================================
+   EXHIBITS
+========================================================= */
+
+.exhibits-section {
+    background: #15171b;
+}
+
+.exhibit-tools {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 250px;
+
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 14px 20px;
+
+    border-radius: 30px;
+
+    border: 1px solid #363940;
+
+    background: #0d0f12;
+    color: white;
+
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: var(--gold);
+}
+
+.exhibit-count {
+    color: #777;
+    padding: 12px;
+}
+
+.exhibit-grid {
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(270px,1fr));
+
+    gap: 25px;
+}
+
+.exhibit {
+    background: #1c1f24;
+
+    border: 1px solid #30343a;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    transition: .35s;
+}
+
+.exhibit:hover {
+    transform: translateY(-8px);
+
+    border-color: var(--gold);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35);
+}
+
+.exhibit-image {
+    height: 220px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #39311f,
+            #101216
+        );
+}
+
+.exhibit-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .5s;
+}
+
+.exhibit:hover .exhibit-image img {
+    transform: scale(1.06);
+}
+
+.image-fallback {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 90px;
+}
+
+.exhibit-era {
+    position: absolute;
+
+    left: 15px;
+    top: 15px;
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+
+    background: rgba(0,0,0,.75);
+
+    color: var(--gold);
+
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.exhibit-content {
+    padding: 25px;
+}
+
+.exhibit-content h3 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.exhibit-date {
+    color: var(--gold);
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+.exhibit-content p {
+    color: #999;
+    font-size: 14px;
+}
+
+.learn-btn {
+    margin-top: 20px;
+
+    background: transparent;
+
+    border: 1px solid var(--gold);
+
+    color: var(--gold);
+
+    padding: 9px 17px;
+
+    border-radius: 20px;
+
+    transition: .25s;
+}
+
+.learn-btn:hover {
+    background: var(--gold);
+    color: #111;
+}
+
+/* =========================================================
+   ROOMS
+========================================================= */
+
+.rooms {
+    background: #0e1013;
+}
+
+.rooms-grid {
+    max-width: 1150px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 20px;
+}
+
+.room {
+    min-height: 260px;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    border: 1px solid #30343a;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    background:
+        linear-gradient(
+            135deg,
+            #222018,
+            #14161a
+        );
+
+    transition: .3s;
+}
+
+.room:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+}
+
+.room-icon {
+    font-size: 55px;
+    margin-bottom: auto;
+}
+
+.room h3 {
+    color: var(--gold);
+    font-size: 25px;
+}
+
+.room p {
+    color: #999;
+    margin-top: 5px;
+}
+
+/* =========================================================
+   COMPARISON
+========================================================= */
+
+.comparison {
+    background: #17191d;
+}
+
+.comparison-table {
+    max-width: 1000px;
+    margin: auto;
+
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+th,
+td {
+    padding: 18px;
+    border-bottom: 1px solid #30343a;
+    text-align: left;
+}
+
+th {
+    color: var(--gold);
+    background: #101216;
+}
+
+td {
+    color: #aaa;
+}
+
+/* =========================================================
+   FUTURE
+========================================================= */
+
+.future {
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(92,116,175,.18),
+            transparent 45%
+        ),
+        #090b0f;
+}
+
+.future-grid {
+    max-width: 1000px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 20px;
+}
+
+.future-card {
+    padding: 35px 25px;
+
+    border: 1px solid #30394a;
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.025);
+}
+
+.future-card .icon {
+    font-size: 55px;
+}
+
+.future-card h3 {
+    color: #dce6ff;
+    margin: 15px 0 10px;
+}
+
+.future-card p {
+    color: #8993a7;
+}
+
+/* =========================================================
+   ABOUT / SOURCES
+========================================================= */
+
+.about {
+    background: #111316;
+}
+
+.about-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.about-content p {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.sources {
+    margin-top: 35px;
+
+    padding: 25px;
+
+    background: #191b20;
+
+    border-radius: 15px;
+
+    border: 1px solid #30343a;
+}
+
+.sources h3 {
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.sources a {
+    color: #cdb16f;
+}
+
+.sources li {
+    margin: 8px 0;
+    color: #aaa;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background: #070809;
+
+    border-top: 1px solid #26282d;
+
+    color: #666;
+}
+
+footer strong {
+    color: var(--gold);
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+    z-index: 3000;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.82);
+
+    backdrop-filter: blur(8px);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: min(850px,100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            #202329,
+            #111317
+        );
+
+    border: 1px solid var(--gold);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 30px 100px #000;
+
+    position: relative;
+}
+
+.modal-image {
+    height: 300px;
+
+    background: #101216;
+}
+
+.modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-body {
+    padding: 35px;
+}
+
+.modal-body h2 {
+    color: var(--gold);
+    font-size: 36px;
+}
+
+.modal-date {
+    color: #aaa;
+    margin: 5px 0 20px;
+}
+
+.modal-body p {
+    color: #bbb;
+    margin-bottom: 18px;
+}
+
+.modal-fact {
+    padding: 18px;
+
+    background: rgba(215,181,109,.07);
+
+    border-left: 3px solid var(--gold);
+
+    margin-top: 20px;
+
+    color: #ddd;
+}
+
+.close-modal {
+    position: absolute;
+
+    right: 20px;
+    top: 15px;
+
+    z-index: 10;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,.75);
+
+    color: white;
+
+    font-size: 25px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .rooms-grid,
+    .future-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even),
+    .timeline-item:nth-child(odd) {
+        width: 100%;
+        left: 0;
+        text-align: left;
+
+        padding-left: 55px;
+        padding-right: 0;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 11px;
+        right: auto;
+    }
+
+}
+
+@media(max-width:600px) {
+
+    section {
+        padding: 80px 5%;
+    }
+
+    .hero h1 {
+        font-size: 50px;
+    }
+
+    .stats-grid,
+    .rooms-grid,
+    .future-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-art {
+        min-height: 250px;
+    }
+
+    .intro-art .big-icon {
+        font-size: 110px;
+    }
+
+    .modal-image {
+        height: 200px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        <span class="logo-icon">🏛️</span>
+        HISTORY OF TECHNOLOGY
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#exhibits">Exhibits</a></li>
+        <li><a href="#rooms">Museum Rooms</a></li>
+        <li><a href="#future">Future</a></li>
+        <li><a href="#about">Sources</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="museum-label">
+            VIRTUAL MUSEUM • EST. 2026
+        </div>
+
+        <h1>
+            The History<br>
+            <span>of Technology</span>
+        </h1>
+
+        <p class="hero-description">
+
+            A journey through humanity's greatest technological
+            transformations — from the first stone tools to
+            artificial intelligence.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#timeline" class="btn btn-gold">
+                Enter the Museum
+            </a>
+
+            <a href="#exhibits" class="btn btn-outline">
+                View Exhibits
+            </a>
+
+        </div>
+
+        <div class="scroll-indicator">
+
+            SCROLL TO EXPLORE
+
+            <span class="scroll-arrow">↓</span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
+
+<section class="introduction">
+
+    <div class="intro-grid">
+
+        <div class="intro-text">
+
+            <div class="eyebrow">
+                Welcome
+            </div>
+
+            <h3>
+                Technology is the story of human problem-solving.
+            </h3>
+
+            <p>
+                Technology did not begin with computers or robots.
+                It began when early humans created tools to solve
+                problems more effectively.
+            </p>
+
+            <p>
+                Over thousands of years, humans developed new ways
+                to make food, travel, communicate, build cities,
+                produce energy and share information.
+            </p>
+
+            <p>
+                The pace of change accelerated dramatically during
+                the Industrial Revolution and accelerated again
+                during the digital age.
+            </p>
+
+            <div class="quote">
+                "Every technology tells a story about the problems
+                humans wanted to solve."
+            </div>
+
+        </div>
+
+
+        <div class="intro-art">
+
+            <div class="big-icon">
+                🪨 ⚙️ 💻 🤖
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATS
+===================================================== -->
+
+<section class="stats">
+
+    <div class="stats-grid">
+
+        <div class="stat">
+            <div class="stat-number">2.5M+</div>
+            <div class="stat-label">Years of technological history</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">14</div>
+            <div class="stat-label">Featured exhibits</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Major technology eras</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Possibilities ahead</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TIMELINE
+===================================================== -->
+
+<section class="timeline-section" id="timeline">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            The Grand Timeline
+        </div>
+
+        <h2>
+            From Stone to Silicon
+        </h2>
+
+        <p>
+            Follow the development of technology across human history.
+        </p>
+
+    </div>
+
+
+    <div class="timeline-controls">
+
+        <button class="filter-btn active" onclick="filterTimeline('all',this)">
+            All Eras
+        </button>
+
+        <button class="filter-btn" onclick="filterTimeline('ancient',this)">
+            Ancient
+        </button>
+
+        <button class="filter-btn" onclick="filterTimeline('industrial',this)">
+            Industrial
+        </button>
+
+        <button class="filter-btn" onclick="filterTimeline('electric',this)">
+            Electricity
+        </button>
+
+        <button class="filter-btn" onclick="filterTimeline('digital',this)">
+            Digital
+        </button>
+
+        <button class="filter-btn" onclick="filterTimeline('modern',this)">
+            Modern
+        </button>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+        <!-- 1 -->
+
+        <div class="timeline-item" data-era="ancient">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('stone')">
+
+                <div class="timeline-year">
+                    c. 2.5 million years ago
+                </div>
+
+                <h3>🪨 Stone Tools</h3>
+
+                <p>
+                    Some of humanity's earliest known tools.
+                    Stone technology allowed humans to cut,
+                    scrape and process materials more effectively.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 2 -->
+
+        <div class="timeline-item" data-era="ancient">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('wheel')">
+
+                <div class="timeline-year">
+                    c. 4th millennium BCE
+                </div>
+
+                <h3>🛞 The Wheel</h3>
+
+                <p>
+                    The wheel became a fundamental technology
+                    for transportation and mechanical systems.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 3 -->
+
+        <div class="timeline-item" data-era="ancient">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('writing')">
+
+                <div class="timeline-year">
+                    c. 3500 BCE
+                </div>
+
+                <h3>📜 Writing</h3>
+
+                <p>
+                    Writing allowed humans to record information,
+                    laws, trade and history across generations.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 4 -->
+
+        <div class="timeline-item" data-era="industrial">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('printing')">
+
+                <div class="timeline-year">
+                    c. 1450
+                </div>
+
+                <h3>📖 Printing Press</h3>
+
+                <p>
+                    Mechanical printing dramatically increased
+                    the ability to reproduce written information.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 5 -->
+
+        <div class="timeline-item" data-era="industrial">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('steam')">
+
+                <div class="timeline-year">
+                    1712+
+                </div>
+
+                <h3>⚙️ Steam Engine</h3>
+
+                <p>
+                    Steam power became one of the foundations
+                    of industrialization.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 6 -->
+
+        <div class="timeline-item" data-era="electric">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('telephone')">
+
+                <div class="timeline-year">
+                    1876
+                </div>
+
+                <h3>☎️ Telephone</h3>
+
+                <p>
+                    Electrical communication allowed the human
+                    voice to travel across long distances.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 7 -->
+
+        <div class="timeline-item" data-era="electric">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('flight')">
+
+                <div class="timeline-year">
+                    1903
+                </div>
+
+                <h3>✈️ Powered Flight</h3>
+
+                <p>
+                    Controlled powered flight opened a new era
+                    of transportation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 8 -->
+
+        <div class="timeline-item" data-era="digital">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('eniac')">
+
+                <div class="timeline-year">
+                    1940s
+                </div>
+
+                <h3>💻 Electronic Computers</h3>
+
+                <p>
+                    Electronic computers transformed the speed
+                    at which information could be processed.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 9 -->
+
+        <div class="timeline-item" data-era="digital">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('transistor')">
+
+                <div class="timeline-year">
+                    1947
+                </div>
+
+                <h3>🔬 Transistor</h3>
+
+                <p>
+                    The transistor became a fundamental component
+                    of modern electronics.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 10 -->
+
+        <div class="timeline-item" data-era="digital">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('internet')">
+
+                <div class="timeline-year">
+                    1969+
+                </div>
+
+                <h3>🌐 Internet</h3>
+
+                <p>
+                    Computer networks eventually evolved into
+                    the global Internet.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 11 -->
+
+        <div class="timeline-item" data-era="digital">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('web')">
+
+                <div class="timeline-year">
+                    1989–1991
+                </div>
+
+                <h3>🌍 World Wide Web</h3>
+
+                <p>
+                    The Web made it easier for people to navigate
+                    and share information over the Internet.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 12 -->
+
+        <div class="timeline-item" data-era="modern">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('smartphone')">
+
+                <div class="timeline-year">
+                    2007+
+                </div>
+
+                <h3>📱 Smartphone</h3>
+
+                <p>
+                    Mobile computers placed communication,
+                    cameras and Internet access in people's pockets.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 13 -->
+
+        <div class="timeline-item" data-era="modern">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-card"
+                 onclick="openExhibit('ai')">
+
+                <div class="timeline-year">
+                    2010s–Today
+                </div>
+
+                <h3>🤖 Artificial Intelligence</h3>
+
+                <p>
+                    Machine learning and modern AI systems have
+                    become increasingly capable and widespread.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EXHIBITS
+===================================================== -->
+
+<section class="exhibits-section" id="exhibits">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Permanent Collection
+        </div>
+
+        <h2>
+            Featured Exhibits
+        </h2>
+
+        <p>
+            Explore individual technologies and discover why
+            they changed human history.
+        </p>
+
+    </div>
+
+
+    <div class="exhibit-tools">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="🔎 Search the museum..."
+                oninput="searchExhibits()"
+            >
+
+        </div>
+
+        <div class="exhibit-count" id="exhibitCount">
+            14 exhibits
+        </div>
+
+    </div>
+
+
+    <div class="exhibit-grid" id="exhibitGrid">
+
+
+        <!-- STONE TOOLS -->
+
+        <article class="exhibit"
+                 data-search="stone tools prehistoric ancient">
+
+            <div class="exhibit-image">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Oldowan%20tools.jpg"
+                    alt="Stone tools"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="image-fallback" style="display:none;">
+                    🪨
+                </div>
+
+                <div class="exhibit-era">
+                    Prehistoric
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Stone Tools</h3>
+
+                <div class="exhibit-date">
+                    c. 2.5 million years ago
+                </div>
+
+                <p>
+                    Early stone tools represent some of the oldest
+                    known evidence of deliberate tool-making.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('stone')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- WHEEL -->
+
+        <article class="exhibit"
+                 data-search="wheel transport ancient">
+
+            <div class="exhibit-image">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Wheel.jpg"
+                    alt="Wheel"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="image-fallback" style="display:none;">
+                    🛞
+                </div>
+
+                <div class="exhibit-era">
+                    Ancient
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>The Wheel</h3>
+
+                <div class="exhibit-date">
+                    c. 4th millennium BCE
+                </div>
+
+                <p>
+                    One of history's most important mechanical
+                    technologies, transforming movement and machines.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('wheel')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- WRITING -->
+
+        <article class="exhibit"
+                 data-search="writing language information ancient">
+
+            <div class="exhibit-image">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Cuneiform_tablet.jpg"
+                    alt="Cuneiform tablet"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="image-fallback" style="display:none;">
+                    📜
+                </div>
+
+                <div class="exhibit-era">
+                    Ancient
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Writing</h3>
+
+                <div class="exhibit-date">
+                    c. 3500 BCE
+                </div>
+
+                <p>
+                    Writing transformed human memory by allowing
+                    information to be stored outside the human mind.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('writing')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRINTING -->
+
+        <article class="exhibit"
+                 data-search="printing press books gutenberg">
+
+            <div class="exhibit-image">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Gutenberg_Bible.jpg"
+                    alt="Gutenberg Bible"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="image-fallback" style="display:none;">
+                    📖
+                </div>
+
+                <div class="exhibit-era">
+                    Print Revolution
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Printing Press</h3>
+
+                <div class="exhibit-date">
+                    c. 1450
+                </div>
+
+                <p>
+                    Mechanical printing dramatically increased
+                    the speed and scale of information reproduction.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('printing')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- STEAM -->
+
+        <article class="exhibit"
+                 data-search="steam engine industrial revolution machine">
+
+            <div class="exhibit-image">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Watt%20steam%20engine.jpg"
+                    alt="Steam engine"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="image-fallback" style="display:none;">
+                    ⚙️
+                </div>
+
+                <div class="exhibit-era">
+                    Industrial
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Steam Engine</h3>
+
+                <div class="exhibit-date">
+                    1712+
+                </div>
+
+                <p>
+                    Steam engines converted heat into mechanical
+                    work and became central to industrialization.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('steam')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- TELEPHONE -->
+
+        <article class="exhibit"
+                 data-search="telephone communication bell">
+
+            <div class="exhibit-image">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Bell%27s%20telephone.jpg"
+                    alt="Historical telephone"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="image-fallback" style="display:none;">
+                    ☎️
+                </div>
+
+                <div class="exhibit-era">
+                    Communication
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Telephone</h3>
+
+                <div class="exhibit-date">
+                    1876
+                </div>
+
+                <p>
+                    Telephones enabled people to communicate using
+                    transmitted electrical signals.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('telephone')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- ELECTRICITY -->
+
+        <article class="exhibit"
+                 data-search="electricity electric power">
+
+            <div class="exhibit-image">
+
+                <div class="image-fallback">
+                    💡
+                </div>
+
+                <div class="exhibit-era">
+                    Electricity
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Electric Power</h3>
+
+                <div class="exhibit-date">
+                    19th century
+                </div>
+
+                <p>
+                    Electrical generation and distribution changed
+                    homes, factories, cities and communication.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('electricity')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- FLIGHT -->
+
+        <article class="exhibit"
+                 data-search="airplane flight wright aviation">
+
+            <div class="exhibit-image">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Wright%20Flyer.jpg"
+                    alt="Wright Flyer"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="image-fallback" style="display:none;">
+                    ✈️
+                </div>
+
+                <div class="exhibit-era">
+                    Aviation
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Powered Flight</h3>
+
+                <div class="exhibit-date">
+                    1903
+                </div>
+
+                <p>
+                    Controlled powered flight opened the era of
+                    modern aviation.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('flight')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- ENIAC -->
+
+        <article class="exhibit"
+                 data-search="computer eniac electronic computing">
+
+            <div class="exhibit-image">
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:FilePath/Eniac.jpg"
+                    alt="ENIAC computer"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="image-fallback" style="display:none;">
+                    💻
+                </div>
+
+                <div class="exhibit-era">
+                    Computer Age
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>ENIAC</h3>
+
+                <div class="exhibit-date">
+                    1940s
+                </div>
+
+                <p>
+                    Early electronic computers demonstrated the
+                    enormous potential of electronic computation.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('eniac')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- TRANSISTOR -->
+
+        <article class="exhibit"
+                 data-search="transistor electronics semiconductor">
+
+            <div class="exhibit-image">
+
+                <div class="image-fallback">
+                    🔬
+                </div>
+
+                <div class="exhibit-era">
+                    Electronics
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Transistor</h3>
+
+                <div class="exhibit-date">
+                    1947
+                </div>
+
+                <p>
+                    Transistors became fundamental building blocks
+                    of modern electronic devices.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('transistor')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- INTERNET -->
+
+        <article class="exhibit"
+                 data-search="internet arpanet network computers">
+
+            <div class="exhibit-image">
+
+                <div class="image-fallback">
+                    🌐
+                </div>
+
+                <div class="exhibit-era">
+                    Network Age
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Internet</h3>
+
+                <div class="exhibit-date">
+                    1969+
+                </div>
+
+                <p>
+                    Computer networking eventually developed into
+                    a global system connecting billions of devices.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('internet')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- WEB -->
+
+        <article class="exhibit"
+                 data-search="world wide web website browser internet">
+
+            <div class="exhibit-image">
+
+                <div class="image-fallback">
+                    🌍
+                </div>
+
+                <div class="exhibit-era">
+                    Web
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>World Wide Web</h3>
+
+                <div class="exhibit-date">
+                    1989–1991
+                </div>
+
+                <p>
+                    The Web provided a system of linked documents
+                    and resources accessible over the Internet.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('web')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- SMARTPHONE -->
+
+        <article class="exhibit"
+                 data-search="smartphone iphone mobile phone">
+
+            <div class="exhibit-image">
+
+                <div class="image-fallback">
+                    📱
+                </div>
+
+                <div class="exhibit-era">
+                    Mobile
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Smartphone</h3>
+
+                <div class="exhibit-date">
+                    2007+
+                </div>
+
+                <p>
+                    Smartphones combined computing, communication,
+                    photography and Internet access.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('smartphone')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- AI -->
+
+        <article class="exhibit"
+                 data-search="artificial intelligence ai machine learning">
+
+            <div class="exhibit-image">
+
+                <div class="image-fallback">
+                    🤖
+                </div>
+
+                <div class="exhibit-era">
+                    Modern
+                </div>
+
+            </div>
+
+            <div class="exhibit-content">
+
+                <h3>Artificial Intelligence</h3>
+
+                <div class="exhibit-date">
+                    2010s–Today
+                </div>
+
+                <p>
+                    Modern AI systems can recognize patterns,
+                    process language and perform complex tasks.
+                </p>
+
+                <button
+                    class="learn-btn"
+                    onclick="openExhibit('ai')">
+                    Explore Exhibit →
+                </button>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MUSEUM ROOMS
+===================================================== -->
+
+<section class="rooms" id="rooms">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Explore the Museum
+        </div>
+
+        <h2>
+            Eight Virtual Rooms
+        </h2>
+
+        <p>
+            Each room represents a different stage in the
+            development of technology.
+        </p>
+
+    </div>
+
+
+    <div class="rooms-grid">
+
+        <div class="room">
+            <div class="room-icon">🪨</div>
+            <h3>Room I — Origins</h3>
+            <p>
+                Tools, fire, materials and the beginnings of human technology.
+            </p>
+        </div>
+
+        <div class="room">
+            <div class="room-icon">🏺</div>
+            <h3>Room II — Ancient World</h3>
+            <p>
+                Writing, agriculture, wheels, architecture and machines.
+            </p>
+        </div>
+
+        <div class="room">
+            <div class="room-icon">📖</div>
+            <h3>Room III — Information</h3>
+            <p>
+                Writing, paper, printing and scientific instruments.
+            </p>
+        </div>
+
+        <div class="room">
+            <div class="room-icon">🏭</div>
+            <h3>Room IV — Industry</h3>
+            <p>
+                Steam engines, factories, railways and mass production.
+            </p>
+        </div>
+
+        <div class="room">
+            <div class="room-icon">💡</div>
+            <h3>Room V — Electricity</h3>
+            <p>
+                Electrical power, telephones, radio and modern communication.
+            </p>
+        </div>
+
+        <div class="room">
+            <div class="room-icon">💻</div>
+            <h3>Room VI — Computers</h3>
+            <p>
+                Electronic computers, transistors and integrated circuits.
+            </p>
+        </div>
+
+        <div class="room">
+            <div class="room-icon">🌐</div>
+            <h3>Room VII — Connected World</h3>
+            <p>
+                Internet, Web, GPS, smartphones and cloud computing.
+            </p>
+        </div>
+
+        <div class="room">
+            <div class="room-icon">🤖</div>
+            <h3>Room VIII — AI & Future</h3>
+            <p>
+                Machine learning, robotics and emerging technologies.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     COMPARISON
+===================================================== -->
+
+<section class="comparison">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            Technology Accelerates
+        </div>
+
+        <h2>
+            From Millennia to Decades
+        </h2>
+
+        <p>
+            Technological change became increasingly rapid over time.
+        </p>
+
+    </div>
+
+
+    <div class="comparison-table">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Technology</th>
+                    <th>Approximate Era</th>
+                    <th>What It Changed</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>🪨 Stone tools</td>
+                    <td>Millions of years ago</td>
+                    <td>Human ability to process materials</td>
+                </tr>
+
+                <tr>
+                    <td>🛞 Wheel</td>
+                    <td>4th millennium BCE</td>
+                    <td>Transportation and machinery</td>
+                </tr>
+
+                <tr>
+                    <td>📖 Printing press</td>
+                    <td>15th century</td>
+                    <td>Spread of written information</td>
+                </tr>
+
+                <tr>
+                    <td>⚙️ Steam engine</td>
+                    <td>18th century</td>
+                    <td>Industrial power</td>
+                </tr>
+
+                <tr>
+                    <td>☎️ Telephone</td>
+                    <td>19th century</td>
+                    <td>Long-distance communication</td>
+                </tr>
+
+                <tr>
+                    <td>✈️ Airplane</td>
+                    <td>20th century</td>
+                    <td>Global transportation</td>
+                </tr>
+
+                <tr>
+                    <td>💻 Computer</td>
+                    <td>20th century</td>
+                    <td>Information processing</td>
+                </tr>
+
+                <tr>
+                    <td>🌐 Internet</td>
+                    <td>Late 20th century</td>
+                    <td>Global networking</td>
+                </tr>
+
+                <tr>
+                    <td>📱 Smartphone</td>
+                    <td>21st century</td>
+                    <td>Mobile computing</td>
+                </tr>
+
+                <tr>
+                    <td>🤖 AI</td>
+                    <td>21st century</td>
+                    <td>Machine-based learning and automation</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FUTURE
+===================================================== -->
+
+<section class="future" id="future">
+
+    <div class="section-heading">
+
+        <div class="eyebrow">
+            The Final Room
+        </div>
+
+        <h2>
+            What Comes Next?
+        </h2>
+
+        <p>
+            The museum ends in the present — but technological
+            history continues to be written.
+        </p>
+
+    </div>
+
+
+    <div class="future-grid">
+
+        <div class="future-card">
+
+            <div class="icon">🤖</div>
+
+            <h3>Advanced AI</h3>
+
+            <p>
+                AI research may lead to increasingly capable
+                systems used in science, education and industry.
+            </p>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="icon">🚀</div>
+
+            <h3>Space Technology</h3>
+
+            <p>
+                New spacecraft and launch systems could expand
+                humanity's ability to explore space.
+            </p>
+
+        </div>
+
+
+        <div class="future-card">
+
+            <div class="icon">🌱</div>
+
+            <h3>Green Technology</h3>
+
+            <p>
+                Energy, transportation and manufacturing may
+                become increasingly focused on sustainability.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT + SOURCES
+===================================================== -->
+
+<section class="about" id="about">
+
+    <div class="about-content">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                About This Project
+            </div>
+
+            <h2>
+                The Museum
+            </h2>
+
+        </div>
+
+
+        <p>
+            The History of Technology Museum is a virtual educational
+            exhibition showing how humans have developed tools,
+            machines and information systems throughout history.
+        </p>
+
+        <p>
+            The timeline is simplified for educational purposes.
+            Dates for very early technologies can vary depending
+            on archaeological evidence and definitions of an invention.
+        </p>
+
+
+        <div class="sources">
+
+            <h3>📚 Research Sources</h3>
+
+            <ul>
+
+                <li>
+                    Our World in Data —
+                    Technology over the long run
+                </li>
+
+                <li>
+                    Wikimedia Commons —
+                    History of technology image collections
+                </li>
+
+                <li>
+                    University of Rochester —
+                    History of Technology resources
+                </li>
+
+                <li>
+                    World Economic Forum —
+                    Timeline of technology transformation
+                </li>
+
+                <li>
+                    Council on Foreign Relations —
+                    History of communication technology
+                </li>
+
+            </ul>
+
+            <br>
+
+            <p>
+                This website is an educational project.
+                Always check the original source when using
+                historical information for academic work.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <p>
+        🏛️ <strong>The History of Technology Museum</strong>
+    </p>
+
+    <p>
+        A virtual museum exploring humanity's technological journey.
+    </p>
+
+    <br>
+
+    <p>
+        © 2026 Virtual Museum Project
+    </p>
+
+</footer>
+
+
+<!-- =====================================================
+     EXHIBIT MODAL
+===================================================== -->
+
+<div class="modal" id="exhibitModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close-modal"
+            onclick="closeModal()">
+            ×
+        </button>
+
+
+        <div class="modal-image">
+
+            <img
+                id="modalImage"
+                src=""
+                alt=""
+                onerror="this.style.display='none';"
+            >
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <h2 id="modalTitle"></h2>
+
+            <div
+                class="modal-date"
+                id="modalDate">
+            </div>
+
+            <p id="modalDescription"></p>
+
+            <p id="modalDetails"></p>
+
+            <div
+                class="modal-fact"
+                id="modalFact">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   EXHIBIT DATABASE
+========================================================= */
+
+const exhibits = {
+
+    stone: {
+
+        title: "Stone Tools",
+
+        date: "c. 2.5 million years ago",
+
+        image:
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Oldowan%20tools.jpg",
+
+        description:
+        "Stone tools are among the earliest known technologies deliberately made by humans and their relatives.",
+
+        details:
+        "Early stone technology included simple chipped tools. These could be used for cutting, scraping, breaking and processing materials. Tool-making allowed humans to extend their physical abilities beyond what their hands could do alone.",
+
+        fact:
+        "Why it matters: Tool-making is one of the clearest examples of humans changing their environment through technology."
+
+    },
+
+
+    wheel: {
+
+        title: "The Wheel",
+
+        date: "c. 4th millennium BCE",
+
+        image:
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Wheel.jpg",
+
+        description:
+        "The wheel became one of the most influential mechanical technologies in human history.",
+
+        details:
+        "The wheel was especially important when combined with axles and vehicles. It later became essential to gears, machinery, clocks and countless mechanical systems.",
+
+        fact:
+        "Why it matters: The wheel demonstrates how a simple mechanical principle can become the foundation for much more complicated machines."
+
+    },
+
+
+    writing: {
+
+        title: "Writing",
+
+        date: "c. 3500 BCE",
+
+        image:
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Cuneiform%20tablet.jpg",
+
+        description:
+        "Writing allowed people to preserve information outside human memory.",
+
+        details:
+        "Early writing systems were used for purposes including administration, trade, laws and record keeping. Writing made it possible for information to survive beyond the people who originally knew it.",
+
+        fact:
+        "Why it matters: Writing turned information into something that could be stored, copied and transmitted across generations."
+
+    },
+
+
+    printing: {
+
+        title: "The Printing Press",
+
+        date: "c. 1450",
+
+        image:
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Gutenberg%20Bible.jpg",
+
+        description:
+        "Johannes Gutenberg's printing technology helped make large-scale reproduction of books much more practical in Europe.",
+
+        details:
+        "Printing greatly increased the number of copies that could be produced compared with copying books by hand. It helped accelerate the spread of knowledge, religious texts, scientific ideas and news.",
+
+        fact:
+        "Why it matters: Information became easier to reproduce and distribute."
+
+    },
+
+
+    steam: {
+
+        title: "The Steam Engine",
+
+        date: "1712 and later",
+
+        image:
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Watt%20steam%20engine.jpg",
+
+        description:
+        "Steam engines became an important source of mechanical power during industrialization.",
+
+        details:
+        "Early steam engines were developed for practical problems such as pumping water from mines. Later improvements made steam power increasingly useful for factories, locomotives and ships.",
+
+        fact:
+        "Why it matters: Steam power helped move society from human and animal muscle toward large-scale machine power."
+
+    },
+
+
+    telephone: {
+
+        title: "The Telephone",
+
+        date: "1876",
+
+        image:
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Bell%27s%20telephone.jpg",
+
+        description:
+        "Telephone technology allowed the human voice to be transmitted over electrical networks.",
+
+        details:
+        "The telephone transformed long-distance communication. Instead of waiting for physical messages to travel, people could communicate using electrical signals through connected networks.",
+
+        fact:
+        "Why it matters: It was an important step toward today's global communication networks."
+
+    },
+
+
+    electricity: {
+
+        title: "Electric Power",
+
+        date: "19th century",
+
+        image: "",
+
+        description:
+        "Electrical technology transformed industry, homes, cities and communication.",
+
+        details:
+        "Electricity became increasingly practical as generators, motors, lighting systems and distribution networks developed. Central power stations eventually supplied electricity to cities and industries.",
+
+        fact:
+        "Why it matters: Electricity became a general-purpose technology supporting thousands of other technologies."
+
+    },
+
+
+    flight: {
+
+        title: "Powered Flight",
+
+        date: "1903",
+
+        image:
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Wright%20Flyer.jpg",
+
+        description:
+        "The Wright brothers demonstrated controlled powered flight in 1903.",
+
+        details:
+        "The achievement combined an engine with aerodynamic design and control systems. Aviation later developed rapidly into passenger transportation, military aviation, cargo transport and space technology.",
+
+        fact:
+        "Why it matters: Human transportation expanded from land and water into the sky."
+
+    },
+
+
+    eniac: {
+
+        title: "Electronic Computers",
+
+        date: "1940s",
+
+        image:
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Eniac.jpg",
+
+        description:
+        "Early electronic computers demonstrated that electronic circuits could perform large numbers of calculations.",
+
+        details:
+        "Machines such as ENIAC used thousands of electronic components. Compared with modern computers, they were enormous, but they helped establish the foundations of electronic computing.",
+
+        fact:
+        "Why it matters: Computing eventually became small, cheap and powerful enough to become part of everyday life."
+
+    },
+
+
+    transistor: {
+
+        title: "The Transistor",
+
+        date: "1947",
+
+        image: "",
+
+        description:
+        "The transistor became one of the fundamental components of modern electronics.",
+
+        details:
+        "Transistors can control electrical signals and can be used as switches or amplifiers. Their small size and reliability helped enable increasingly compact electronic devices.",
+
+        fact:
+        "Why it matters: Modern computers, phones and countless electronic devices depend on transistor technology."
+
+    },
+
+
+    internet: {
+
+        title: "The Internet",
+
+        date: "1969 and later",
+
+        image: "",
+
+        description:
+        "Computer networking evolved into the global Internet.",
+
+        details:
+        "Early networks such as ARPANET demonstrated how computers in different locations could communicate. Later networking standards, especially TCP/IP, enabled separate networks to communicate as a larger network.",
+
+        fact:
+        "Why it matters: The Internet changed communication, education, business, entertainment and access to information."
+
+    },
+
+
+    web: {
+
+        title: "The World Wide Web",
+
+        date: "1989–1991",
+
+        image: "",
+
+        description:
+        "The World Wide Web created a system for linking and accessing information over the Internet.",
+
+        details:
+        "Tim Berners-Lee developed the core ideas of the Web, including URLs, HTTP and HTML. Web browsers later made it possible for ordinary users to navigate websites and online information.",
+
+        fact:
+        "Why it matters: The Web helped transform the Internet into a medium used by billions of people."
+
+    },
+
+
+    smartphone: {
+
+        title: "The Smartphone",
+
+        date: "2007 and later",
+
+        image: "",
+
+        description:
+        "Modern smartphones combine communication, computing, cameras, sensors and Internet access in a handheld device.",
+
+        details:
+        "The smartphone represents the convergence of technologies that were once separate. A single device can now function as a telephone, camera, navigation system, music player, computer and communication platform.",
+
+        fact:
+        "Why it matters: Computing became portable and continuously connected."
+
+    },
+
+
+    ai: {
+
+        title: "Artificial Intelligence",
+
+        date: "2010s–Today",
+
+        image: "",
+
+        description:
+        "Modern artificial intelligence uses algorithms and large amounts of data to perform tasks involving pattern recognition, language, prediction and generation.",
+
+        details:
+        "Recent advances in machine learning, neural networks and computing hardware have made AI systems increasingly capable. AI is now used across areas such as science, engineering, education, medicine, business and creative tools.",
+
+        fact:
+        "Why it matters: AI represents a major new stage in the relationship between humans and computing."
+
+    }
+
+};
+
+
+/* =========================================================
+   OPEN EXHIBIT
+========================================================= */
+
+function openExhibit(id) {
+
+    const exhibit = exhibits[id];
+
+    if (!exhibit) return;
+
+    document.getElementById("modalTitle").textContent =
+        exhibit.title;
+
+    document.getElementById("modalDate").textContent =
+        exhibit.date;
+
+    document.getElementById("modalDescription").textContent =
+        exhibit.description;
+
+    document.getElementById("modalDetails").textContent =
+        exhibit.details;
+
+    document.getElementById("modalFact").textContent =
+        exhibit.fact;
+
+    const image =
+        document.getElementById("modalImage");
+
+    if (exhibit.image) {
+
+        image.src = exhibit.image;
+
+        image.style.display = "block";
+
+    } else {
+
+        image.style.display = "none";
+
+    }
+
+    document
+        .getElementById("exhibitModal")
+        .classList.add("show");
+
+    document.body.style.overflow = "hidden";
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal() {
+
+    document
+        .getElementById("exhibitModal")
+        .classList.remove("show");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        closeModal();
+
+    }
+
+});
+
+
+/* =========================================================
+   CLICK OUTSIDE MODAL
+========================================================= */
+
+document
+    .getElementById("exhibitModal")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+
+            closeModal();
+
+        }
+
+    });
+
+
+/* =========================================================
+   TIMELINE FILTER
+========================================================= */
+
+function filterTimeline(era, button) {
+
+    const items =
+        document.querySelectorAll(".timeline-item");
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+    button.classList.add("active");
+
+
+    items.forEach(item => {
+
+        if (
+            era === "all" ||
+            item.dataset.era === era
+        ) {
+
+            item.style.display = "block";
+
+        } else {
+
+            item.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   EXHIBIT SEARCH
+========================================================= */
+
+function searchExhibits() {
+
+    const query =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const cards =
+        document.querySelectorAll(".exhibit");
+
+    let visible = 0;
+
+    cards.forEach(card => {
+
+        const text =
+            card.dataset.search.toLowerCase();
+
+        if (text.includes(query)) {
+
+            card.style.display = "block";
+
+            visible++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    document
+        .getElementById("exhibitCount")
+        .textContent =
+        visible + " exhibit" +
+        (visible === 1 ? "" : "s");
+
+}
+
+
+/* =========================================================
+   SIMPLE REVEAL ANIMATION
+========================================================= */
+
+const revealElements =
+    document.querySelectorAll(
+        ".timeline-card, .exhibit, .room, .future-card, .stat"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: .12
+        }
+
+    );
+
+
+revealElements.forEach(element => {
+
+    element.style.opacity = "0";
+    element.style.transform = "translateY(25px)";
+    element.style.transition =
+        "opacity .7s ease, transform .7s ease";
+
+    observer.observe(element);
+
+});
+
+</script>
+
+</body>
+</html>
